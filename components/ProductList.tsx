@@ -1,5 +1,4 @@
 import { getProducts } from "@/lib/actions";
-import ProductCard from "./ProductCard";
 
 const ProductList = async () => {
   const products = await getProducts();
@@ -11,10 +10,11 @@ const ProductList = async () => {
       ) : (
         <div>
           {products.map((product: ProductType) => {
-            <ProductCard key={product._id} product={product} />;
+            return <p key={product._id}>{product.title}</p>;
           })}
         </div>
       )}
+      djfkldsfjlkdsfjlsd
     </div>
   );
 };
