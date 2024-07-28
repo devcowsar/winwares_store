@@ -1,4 +1,5 @@
 import { getProducts } from "@/lib/actions";
+import ProductCard from "./ProductCard";
 
 const ProductList = async () => {
   const products = await getProducts();
@@ -8,13 +9,12 @@ const ProductList = async () => {
       {!products || products.length === 0 ? (
         <p className="text-body-bold">products not found</p>
       ) : (
-        <div>
+        <div className="flex flex-wrap mx-auto gap-16">
           {products.map((product: ProductType) => {
-            return <p key={product._id}>{product.title}</p>;
+            return <ProductCard key={product._id} product={product} />;
           })}
         </div>
       )}
-      djfkldsfjlkdsfjlsd
     </div>
   );
 };
