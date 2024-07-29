@@ -7,7 +7,7 @@ export const POST=async (req:NextRequest)=>{
     try{
         const {userId}=auth()
         if(!userId){
-            return new NextResponse('unAuthorized',{status:401})
+            return new NextResponse('Unauthorized',{status:401})
         }
 
         await connectToDB()
