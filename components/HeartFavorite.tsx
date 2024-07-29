@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { HtmlHTMLAttributes, useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { Heart } from "lucide-react";
@@ -29,7 +29,10 @@ const HeartFavorite = ({ product }: { product: ProductType }) => {
     }
   }, [user]);
 
-  const handleLike = async () => {
+  const handleLike = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
     try {
       if (!user) {
         router.push("/sign-in");
