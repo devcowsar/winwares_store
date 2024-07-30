@@ -39,7 +39,7 @@ const useCart = create(
           (cartItem) => cartItem.item._id !== idToRemove
         );
         set({ cartItems: newCartItems });
-        toast.success("Item added to cart", { icon: "" });
+        toast.success("Item removed to cart", { icon: "" });
       },
       increaseQuantity: (idToIncrease: string) => {
         const newCartItems = get().cartItems.map((cartItem) =>
