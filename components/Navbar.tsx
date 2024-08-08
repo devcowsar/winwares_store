@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { CircleUserRound, Menu, Search, ShoppingCart } from "lucide-react";
 import { UserButton, useUser } from "@clerk/nextjs";
 import Image from "next/image";
@@ -9,6 +9,7 @@ import Link from "next/link";
 import useCart from "@/lib/hooks/useCart";
 
 const Navbar = () => {
+  const pathname = usePathname();
   const router = useRouter();
   const { user } = useUser();
   const cart = useCart();
@@ -28,16 +29,26 @@ const Navbar = () => {
         />
       </Link>
       <div className="flex gap-4 text-base-bold max-lg:hidden">
-        <Link href="/" className="hover:text-red-1">
+        <Link
+          href="/"
+          className={`hover:text-red-1 ${pathname === "/" && "text-red-1"}`}
+        >
           Home
         </Link>
         <Link
           href={user ? "/wishlist" : "/sign-in"}
-          className="hover:text-red-1"
+          className={`hover:text-red-1 ${
+            pathname === "/wishlist" && "text-red-1"
+          }`}
         >
           Wishlist
         </Link>
-        <Link href={user ? "/orders" : "/sign-in"} className="hover:text-red-1">
+        <Link
+          href={user ? "/orders" : "/sign-in"}
+          className={`hover:text-red-1 ${
+            pathname === "/orders" && "text-red-1"
+          }`}
+        >
           Orders
         </Link>
       </div>
